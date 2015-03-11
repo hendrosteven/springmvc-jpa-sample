@@ -24,6 +24,8 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(length = 20, nullable = false, unique = true)
+    private String code;
     @Column(length = 100, nullable = false)
     private String name;
     private double price;
@@ -94,6 +96,18 @@ public class Product implements Serializable {
     public void setCategory(Category category) {
         this.category = category;
     }
-    
-    
+
+    /**
+     * @return the code
+     */
+    public String getCode() {
+        return code;
+    }
+
+    /**
+     * @param code the code to set
+     */
+    public void setCode(String code) {
+        this.code = code;
+    }
 }

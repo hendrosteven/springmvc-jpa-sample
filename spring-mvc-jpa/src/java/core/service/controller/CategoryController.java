@@ -46,7 +46,7 @@ public class CategoryController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/edit")
     public String viewEdit(HttpServletRequest request, ModelMap model) {
-        int id = Integer.valueOf(request.getParameter("id"));
+        long id = Long.valueOf(request.getParameter("id"));
         model.addAttribute("category", categoryDAO.getById(id));
         return "category_edit";
     }
