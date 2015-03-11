@@ -81,6 +81,7 @@ public class ProductController {
         return "redirect:/product";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/delete")
     public String delete(HttpServletRequest request) {
         long id = Long.valueOf(request.getParameter("id"));
         productDAO.delete(productDAO.getById(id));
