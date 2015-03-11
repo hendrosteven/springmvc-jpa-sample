@@ -18,15 +18,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProductDAO extends GeneralDAO {
 
     public Product getById(long id) {
-        return this.em.find(Product.class, id);
+        return em.find(Product.class, id);
     }
 
     public List<Product> getAll() {
-        return this.em.createQuery("SELECT p FROM Product p").getResultList();
+        return em.createQuery("SELECT p FROM Product p").getResultList();
     }
 
     public List<Product> getByName(String name) {
-        return this.em.createQuery("SELECT p FROM Product p WHERE p.name LIKE :param")
+        return em.createQuery("SELECT p FROM Product p WHERE p.name LIKE :param")
                 .setParameter("param", "%" + name + "%").getResultList();
     }
 }

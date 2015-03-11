@@ -62,6 +62,7 @@ public class CategoryController {
         return "redirect:/category";
     }
 
+    @RequestMapping(method= RequestMethod.GET, value="/delete")
     public String delete(HttpServletRequest request) {
         long id = Long.valueOf(request.getParameter("id"));
         categoryDAO.delete(categoryDAO.getById(id));

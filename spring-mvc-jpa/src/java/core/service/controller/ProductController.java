@@ -34,7 +34,8 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/insert", method = RequestMethod.GET)
-    public String viewInsert() {
+    public String viewInsert(ModelMap model) {
+        model.addAttribute("categories", categoryDAO.getAll());
         return "product_insert";
     }
 
@@ -59,6 +60,7 @@ public class ProductController {
     public String viewEdit(HttpServletRequest request, ModelMap model) {
         long id = Long.valueOf(request.getParameter("id"));
         model.addAttribute("product", productDAO.getById(id));
+        model.addAttribute("categories", categoryDAO.getAll());
         return "product_edit";
     }
 

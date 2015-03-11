@@ -18,10 +18,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class CategoryDAO extends GeneralDAO {
 
     public Category getById(long id) {
-        return this.em.find(Category.class, id);
+        return em.find(Category.class, id);
     }
 
     public List<Category> getAll() {
-        return this.em.createQuery("SELECT c FROM Category c").getResultList();
+        return em.createQuery("SELECT c FROM Category c").getResultList();
     }
 }
