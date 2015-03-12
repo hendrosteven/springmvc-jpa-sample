@@ -30,7 +30,7 @@ public class Product implements Serializable {
     private String name;
     private double price;
     private String description;
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Category category;
 
     public Long getId() {
