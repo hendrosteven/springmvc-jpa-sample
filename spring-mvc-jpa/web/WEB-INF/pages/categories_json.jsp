@@ -38,15 +38,9 @@
 
         <div class="row">
             <div class="large-12 column">
-                <h3>Categories</h3>
-                <c:if test="${errors!=null}">
-                    <div data-alert class="alert-box alert radius">
-                        ${errors}
-                        <a href="#" class="close">&times;</a>
-                    </div>
-                </c:if>
+                <h3>Categories</h3>                
                 <a class="button tiny" href="<c:url value="/category/insert"/>">Add</a>
-                <table>
+                <table id="tblCategory">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -55,16 +49,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${categories}" var="category">
-                            <tr>
-                                <td>${category.id}</td>
-                                <td>${category.name}</td>
-                                <td>
-                                    <a class="alert label" href="<c:url value="/category/delete?id=${category.id}"/>">Del</a>
-                                    <a class="success label" href="<c:url value="/category/edit?id=${category.id}"/>">Edit</a>
-                                </td>
-                            </tr>
-                        </c:forEach>
+
                     </tbody>
                 </table>
             </div>
@@ -73,6 +58,28 @@
         <script src="<c:url value="/assets/js/foundation.min.js"/>"></script>
         <script>
             $(document).foundation();
+            $(document).ready(function(){
+                
+                $.get("/spring-mvc-jpa/category/json",function(data){
+                    $.each(data, function(key,value){
+                        //alert(value['name']);
+                        var del =  '<a href="javascript:deleteRecord('+value["id"]+')" class="alert label">Del</a>';
+                        var edit = '<a href="/spring-mvc-jpa/category/edit?id='+value["id"]+'" class="success label">Edit</a>';
+                        var str = '<tr><td>'+value['id']+'</td><td>'+value['name']+'</td><td>'+del+' '+edit+'</td></tr>';                       
+                        $('#tblCategory tbody').append(str);
+                    });
+                });                
+            });
+            
+            function deleteRecord(deletedId){
+                $.get("/spring-mvc-jpa/category/delete/json",{id:deletedId},function(data){
+                    if(data==true){
+                        window.location.href=window.location.href;
+                    }else{
+                        alert('Gagal dihapus!');
+                    }
+                });
+            }
         </script>
     </body>
 </html>
